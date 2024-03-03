@@ -22,7 +22,7 @@ const columns: GridColDef[] = [
       type: 'number',
       width: 110,
     },
-  ];
+];
   
 interface AccountListProps {
 accountData: AccountData[];

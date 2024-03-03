@@ -1,6 +1,7 @@
 import React from "react";
 import { AccountData } from "../Pages/HomePage/Start";
 import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody } from "@mui/material";
+import { Link } from "react-router-dom";
 
 interface AccountsProps{
     accounts: AccountData[]
@@ -56,7 +57,7 @@ const AccountRow = ({
         key={id}
         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
     >
-        <TableCell component="th" scope="row">{accountName}</TableCell>
+        <TableCell component="th" scope="row"><Link to={`/${id}`}>{accountName}</Link></TableCell>
         <TableCell align="right">{bankName}</TableCell>
         <TableCell align="right">{balance}</TableCell>
         <TableCell align="right">{currency}</TableCell>
