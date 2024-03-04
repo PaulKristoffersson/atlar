@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Accounts } from "../../Components/Accounts";
+import TopBar from "../../Components/TopBar";
 
 export interface AccountData {
     id: string;
@@ -43,9 +44,10 @@ export const Start = () => {
 
     },[])
     return (
-        <div>
-            <Accounts accounts={accounts}/>
-        </div>
+      <>
+        <TopBar/>
+        <Accounts accounts={accounts}/>
+      </>
     )
 
 }

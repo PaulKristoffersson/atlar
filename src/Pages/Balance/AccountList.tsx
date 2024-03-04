@@ -2,7 +2,24 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Box, Stack } from "@mui/material";
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import { AccountData } from "../HomePage/Home"
+
+export interface AccountData {
+  id: string;
+  name: string;
+  alias: string;
+  balance: {
+    amount: {
+      currency: string;
+      stringValue: string;
+    };
+  };
+  bank: {
+      bic: string;
+      id: string;
+      name: string;
+  }
+  realBankName? : string;
+}
 
 const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 90 },
