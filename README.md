@@ -1,46 +1,34 @@
-# Getting Started with Create React App
+## Case work for Atlar
+This simple application was developed for a case provided by Atlar. It enables an imaginary bank employee to perform four tasks.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## `Prerequisites`
+To use the application, the user must download Node.js and npm, which can be done from the Node.js website.
 
-## Available Scripts
+The user is also required to have a TypeScript compiler, which can be installed through npm.
 
+The dependencies, such as Material-UI and React Router, can be installed by running
+
+### `npm install`
+
+inside of the project directory. 
+
+## `Instructions`
 In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.\
+to run the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+On the homepage, you will see the different accounts that exist across the three available banks. Here, the names of the accounts, their banks, the balances, as well as the currencies are displayed. The user can then click on the account name to delve into specific account information. To return to the homepage, the user can click the home icon on the top bar of each page.
 
-### `npm test`
+After clicking the account name, the application will display some account information, a graph covering the account balance over the last fifty days (although, for the accounts provided in the example, the account balance never changes), and a table of the transactions made to and from the account. If a transaction has been returned, that transaction's row in the table will be marked in red. The same will occur if a payout from the account exceeds 5000 euros.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Improvements to be made
+The most glaring improvement to be made is the styling of the application. Based on the time constraints, I focused on the functionality of the application instead of the styling.
 
-### `npm run build`
+I also believe creating a separate tab that would show all payments exceeding 5000 euros would enable the user to complete that task more quickly, instead of having to go through each account one by one. Similarly, a tab for returned payments would also speed up the process of that task.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Aditionally, I believe creating the functionality to select the range of days displayed in the line graph would be beneficial.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Lastly, adding test to ensure that everything works correct should be done. 

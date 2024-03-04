@@ -1,7 +1,4 @@
-import React from "react";
-import { AccountData } from "../Pages/HomePage/Start";
-import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, Box, tableCellClasses, styled } from "@mui/material";
-import { Link } from "react-router-dom";
+import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, Box, styled } from "@mui/material";
 import { StyledTableCell } from "./Accounts";
 
 export interface TransactionData{
@@ -29,9 +26,9 @@ interface TransactionsProps{
 
 export const Transactions = ({transactions}: TransactionsProps) => {
     return (
-      <Box display="flex" justifyContent="center" alignItems="center" paddingTop='4vh'>
+      <Box display="flex" justifyContent="center" alignItems="center" paddingTop='4vh' paddingBottom='2vh'>
         <TableContainer component={Paper} sx={{ width: 1/2, alignSelf: 'center' }}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <Table aria-label="simple table">
             <TableHead>
               <TableRow>
                 <StyledTableCell>Date</StyledTableCell>
@@ -72,34 +69,40 @@ const TransactionRow = ({
 }: TransactionRowProps) => { 
 
     const paymentCheck = controlPaymentAmount(amount, currency);
-    const RowComponent = returned || paymentCheck ? StyledTableRowAlert : TableRow;
 
     return(
-    <RowComponent
+    <TableRow
         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
     >
         <TableCell component="th" scope="row">{date}</TableCell>
-        <TableCell align="right">{amount}</TableCell>
+        {paymentCheck ? (
+          <StyledTableCellAlert align="right">{amount}</StyledTableCellAlert>
+        ) : (
+          <TableCell align="right">{amount}</TableCell>
+        )}
         <TableCell align="right">{currency}</TableCell>
-        <TableCell align="right">{returned.toString()}</TableCell>
-    </RowComponent>
+        {returned ? (
+          <StyledTableCellAlert align="right">{returned.toString()}</StyledTableCellAlert>
+        ) : (
+          <TableCell align="right">{returned.toString()}</TableCell>
+        )}
+    </TableRow>
     )
 }
 
-const StyledTableRowAlert = styled(TableRow)(() => ({
+const StyledTableCellAlert = styled(TableCell)(() => ({
   backgroundColor: '#ba000d'
 }));
 
 
 const conversionRates = {
-  SEK: 0.89, 
-  DKK: 0.13, 
-  GBP: 1.17, 
+  SEK: 0.1, 
+  DKK: 0.1, 
+  GBP: 1, 
   EUR: 1, 
 };
 
 const controlPaymentAmount = (amount: number, currency: string): boolean => {
-
   const paymentAmount = amount * conversionRates[currency as keyof typeof conversionRates];
   if (paymentAmount < -5000) return true
 

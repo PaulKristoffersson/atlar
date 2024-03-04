@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Accounts } from "../../Components/Accounts";
 import TopBar from "../../Components/TopBar";
+import { Stack, Typography } from "@mui/material";
 
 export interface AccountData {
     id: string;
@@ -27,9 +28,7 @@ export interface AccountData {
   }
 
 export const Start = () => {
-
     const [accounts, setAccounts] = useState<AccountData[]>([]);
-
     useEffect(() => {
         const username = 'hUfCzFeteKCZgfotD59I';
         const password = 'xmYWTEClhhl9720KE7ccC5FsqRhD8UsTDlpxzJPW2AN34iHE3jl0zgaPcpKfeocQhb_g';
@@ -40,14 +39,19 @@ export const Start = () => {
         .then(response => response.json())
         .then(response => setAccounts(response.items))
         .catch(err => console.error(err));
-
-
     },[])
     return (
-      <>
+      <Stack direction='column'>
         <TopBar/>
+        <Typography variant='h5' sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginTop: 5,
+        }} >
+            Account overview
+        </Typography>
         <Accounts accounts={accounts}/>
-      </>
+      </Stack>
     )
-
 }

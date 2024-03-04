@@ -1,8 +1,7 @@
-import { LineChart } from "@mui/x-charts";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { TransactionData, Transactions } from "../../Components/Transactions";
-import { Box, Grid, Stack } from "@mui/material";
+import { Grid, Stack } from "@mui/material";
 import { Balance, BalanceData } from "../../Components/Balance";
 import TopBar from "../../Components/TopBar";
 import { AccountInfo } from "../../Components/AccountInfo";

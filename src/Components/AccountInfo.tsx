@@ -1,9 +1,7 @@
 import { Box, Stack, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { BalanceData } from "./Balance";
 import { TransactionData } from "./Transactions";
-
-
 
 interface AccountInfoProps{
     balances: BalanceData[];

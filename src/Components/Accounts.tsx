@@ -1,6 +1,7 @@
-import React from "react";
+import { Sort } from "@mui/icons-material";
 import { AccountData } from "../Pages/HomePage/Start";
-import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, styled, tableCellClasses, Box } from "@mui/material";
+import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, styled, tableCellClasses, Box, IconButton } from "@mui/material";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 interface AccountsProps{
@@ -9,34 +10,48 @@ interface AccountsProps{
 
 export const Accounts = ({accounts}: AccountsProps) => {
 
-    return (
-      <Box display="flex" justifyContent="center" alignItems="center" paddingTop='10vh'>
-        <TableContainer component={Paper} sx={{ width: 1/2, alignSelf: 'center' }}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <StyledTableCell>Account</StyledTableCell>
-                <StyledTableCell align="right">Bank</StyledTableCell>
-                <StyledTableCell align="right">Balance</StyledTableCell>
-                <StyledTableCell align="right">Currency</StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {accounts.map((account) => (
-                <AccountRow 
-                key={account.id}
-                bankName={account.affiliation.name}
-                accountName={account.name}
-                balance={account.balance.amount.value}
-                currency={account.balance.amount.currency}
-                id={account.id}
-                />
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Box>
-      );
+  const [isReversed, setIsReversed] = useState(false);
+  const sortedAccounts = [...accounts].sort((a, b) => a.affiliation.name.localeCompare(b.affiliation.name));
+  const handleReverseOrder = () => {
+      setIsReversed(!isReversed);
+  };
+  const displayedAccounts = isReversed ? [...sortedAccounts].reverse() : sortedAccounts;
+
+  return (
+    <Box display="flex" justifyContent="center" alignItems="center" paddingTop='10vh'>
+      <TableContainer component={Paper} sx={{ width: 1/2, alignSelf: 'center' }}>
+        <Table aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell>Account</StyledTableCell>
+              <StyledTableCell align="right">
+                Bank 
+                <IconButton size="small"
+                  edge="start"
+                  color="inherit"
+                  onClick={handleReverseOrder}
+                ><Sort/></IconButton>
+              </StyledTableCell>
+              <StyledTableCell align="right">Balance</StyledTableCell>
+              <StyledTableCell align="right">Currency</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {displayedAccounts.map((account) => (
+              <AccountRow 
+              key={account.id}
+              bankName={account.affiliation.name}
+              accountName={account.name}
+              balance={account.balance.amount.value}
+              currency={account.balance.amount.currency}
+              id={account.id}
+              />
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Box>
+    );
 }
 
 interface AccountRowProps{
